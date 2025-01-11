@@ -15,44 +15,49 @@ namespace PokemonAPIApplication.Controllers
             // inject the service into the controller
             _pokemonService = pokemonService;
         }
+
         [HttpGet]
-        public List<Pokemon> Get()
+        public async Task<List<Pokemon>> Get()
         {
-            return _pokemonService.GetPokemons();
+            return await _pokemonService.GetPokemons();
         }
+
         [HttpGet("{id}")]
-        public ActionResult GetPokemon(string id)
+        public async Task<ActionResult> GetPokemon(string id)
         {
             try
             {
-                return Ok(_pokemonService.GetPokemonById(id));
+                var pokemon = await _pokemonService.GetPokemonById(id);
+                return Ok(pokemon);
             }
             catch (Exception)
             {
                 return NotFound("Pokemon not found");
             }
         }
+
         [HttpGet("search/{name}")]
-        public List<Pokemon> GetPokemonByName(string name)
+        public async Task<List<Pokemon>> GetPokemonByName(string name)
         {
-            return _pokemonService.GetPokemonByName(name);
+            return await _pokemonService.GetPokemonByName(name);
         }
 
         [HttpPost]
-        public Pokemon AddPokemon(Pokemon newPokemon)
+        public async Task<Pokemon> AddPokemon(Pokemon newPokemon)
         {
-            return _pokemonService.AddPokemon(newPokemon);
+            return await _pokemonService.AddPokemon(newPokemon);
         }
+
         [HttpPut("{id}")]
-        public Pokemon UpdatePokemon(string id, Pokemon updatedPokemon)
+        public async Task<Pokemon> UpdatePokemon(string id, Pokemon updatedPokemon)
         {
-            return _pokemonService.UpdatePokemon(id, updatedPokemon);
+            return await _pokemonService.UpdatePokemon(id, updatedPokemon);
         }
 
         [HttpDelete("{id}")]
-        public bool DeletePokemon(string id)
+        public async Task<bool> DeletePokemon(string id)
         {
-            return _pokemonService.DeletePokemon(id);
+            return await _pokemonService.DeletePokemon(id);
         }
     }
 }

@@ -15,36 +15,37 @@ namespace PokemonAPIApplication.Services
             var database = client.GetDatabase(configuration["MongoDbSettings:DatabaseName"]);
             _pokemonsCollection = database.GetCollection<Pokemon>(configuration["MongoDbSettings:CollectionName"]);
         }
-        public List<Pokemon> GetPokemons()
+
+        public async Task<List<Pokemon>> GetPokemons()
         {
-            return _pokemonsCollection.Find(pokemon => true).ToList();
+            return await _pokemonsCollection.Find(pokemon => true).ToListAsync();
         }
 
-        public Pokemon GetPokemonById(string id)
+        public async Task<Pokemon> GetPokemonById(string id)
         {
-            var pokemon = _pokemonsCollection.Find(pokemon => pokemon.Id == id).FirstOrDefault();
-            return pokemon == null ? throw new Exception("Pokemon not found") : pokemon;
+            var pokemon = await _pokemonsCollection.Find(pokemon => pokemon.Id == id).FirstOrDefaultAsync();
+            return pokemon ?? throw new Exception("Pokemon not found");
         }
 
-        public List<Pokemon> GetPokemonByName(string name)
+        public async Task<List<Pokemon>> GetPokemonByName(string name)
         {
-            var pokemon = _pokemonsCollection.Find(pokemon => pokemon.Name == name).ToList();
-            return pokemon == null ? throw new Exception("Pokemon not found") : pokemon;
+            var pokemon = await _pokemonsCollection.Find(pokemon => pokemon.Name == name).ToListAsync();
+            return pokemon ?? throw new Exception("Pokemon not found");
         }
 
-        public Pokemon AddPokemon(Pokemon newPokemon)
+        public async Task<Pokemon> AddPokemon(Pokemon newPokemon)
         {
             if (string.IsNullOrEmpty(newPokemon.Id))
             {
                 newPokemon.Id = ObjectId.GenerateNewId().ToString();
             }
-            _pokemonsCollection.InsertOne(newPokemon);
+            await _pokemonsCollection.InsertOneAsync(newPokemon);
             return newPokemon;
         }
 
-        public Pokemon UpdatePokemon(string id, Pokemon updatedPokemon)
+        public async Task<Pokemon> UpdatePokemon(string id, Pokemon updatedPokemon)
         {
-            var result = _pokemonsCollection.ReplaceOne(pokemon => pokemon.Id == id, updatedPokemon);
+            var result = await _pokemonsCollection.ReplaceOneAsync(pokemon => pokemon.Id == id, updatedPokemon);
             if (result.MatchedCount == 0)
             {
                 throw new Exception("Pokemon not found");
@@ -52,9 +53,9 @@ namespace PokemonAPIApplication.Services
             return updatedPokemon;
         }
 
-        public bool DeletePokemon(string id)
+        public async Task<bool> DeletePokemon(string id)
         {
-            var result = _pokemonsCollection.DeleteOne(pokemon => pokemon.Id == id);
+            var result = await _pokemonsCollection.DeleteOneAsync(pokemon => pokemon.Id == id);
             if (result.DeletedCount == 0)
             {
                 throw new Exception("Pokemon not found");

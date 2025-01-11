@@ -23,6 +23,7 @@ C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\ob
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\PokemonAPIApplication.csproj.CoreCompileInputs.cache
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\PokemonAPIApplication.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\PokemonAPIApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\PokemonAPIApplication.sourcelink.json
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\scopedcss\bundle\PokemonAPIApplication.styles.css
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Mr Computer\source\repos\PokemonAPIApplication\PokemonAPIApplication\obj\Debug\net8.0\staticwebassets.development.json

@@ -4,11 +4,11 @@ namespace PokemonAPIApplication.Services
 {
     public interface IPokemonService
     {
-        List<Pokemon> GetPokemons();
-        Pokemon GetPokemonById(string id);
-        List<Pokemon> GetPokemonByName(string name);
-        Pokemon AddPokemon(Pokemon newPokemon);
-        Pokemon UpdatePokemon(string id, Pokemon updatedPokemon);
-        bool DeletePokemon(string id);
+        Task<List<Pokemon>> GetPokemons();
+        Task<Pokemon> GetPokemonById(string id);
+        Task<List<Pokemon>> GetPokemonByName(string name);
+        Task<Pokemon> AddPokemon(Pokemon newPokemon);
+        Task<Pokemon> UpdatePokemon(string id, Pokemon updatedPokemon);
+        Task<bool> DeletePokemon(string id);
     }
 }
